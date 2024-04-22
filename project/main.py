@@ -1,5 +1,5 @@
-from project.bfs import bfs
-from project.dfs import dfs
+from bfs import bfs
+from dfs import dfs
 
 # Use bsf.py to find the shortest path
 def find_shortest_path_using_bfs(graph, start, end):

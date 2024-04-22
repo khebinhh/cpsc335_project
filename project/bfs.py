@@ -3,7 +3,7 @@ def bfs(graph, start, end):
     queue = [(start, [start])]
     while queue:
         (vertex, path) = queue.pop(0)
-        for next in graph[vertex] - set(path):
+        for next in set(graph[vertex]) - set(path):
             if next == end:
                 yield path + [next]
             else:
