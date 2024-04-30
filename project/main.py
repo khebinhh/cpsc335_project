@@ -1,16 +1,28 @@
 from bfs import bfs
 from dfs import dfs
+from dijkstra import dijkstra_algo
 
 # Use bsf.py to find the shortest path
+
+
 def find_shortest_path_using_bfs(graph, start, end):
     for path in bfs(graph, start, end):
         return path
 
 # Use dfs.py to find all possible paths
+
+
 def find_all_paths_using_dfs(graph, start, end):
     return dfs(graph, start, end)
 
+# Use dijkstra.py to find the shortest weighted path
+
+
+def find_shortest_path_using_dijkstra(graph, start_node):
+    return dijkstra_algo(graph, start_node)
+
 # Example for now to check functionality
+
 
 graph = {
     '1': {'2'},
@@ -84,7 +96,7 @@ graph = {
     '72': {'68', '71', '73'},
     '73': {'72', '74'},
     '74': {'63', '73'}
-} 
+}
 
 start_node = '1'
 end_node = '74'
