@@ -1,9 +1,5 @@
 import tkinter as tk
 
-# Dummy campus graph data
-campus_graph = {
-    #implement graph data here
-}
 
 class CampusNavigator:
     def __init__(self, master):
