@@ -90,16 +90,16 @@ class CampusNavigator:
     end_point = self.end_var.get()
     
     '''
-      route = self.calculate_route(start_point, end_point)
-      self.route_display.config(text=route)
-      wheelchair_friendly = self.accessibility_var.get()
+    route = self.calculate_route(start_point, end_point)
+    self.route_display.config(text=route)
+    wheelchair_friendly = self.accessibility_var.get()
 
-      if wheelchair_friendly:
-          pass
-      else:
-          route = self.bfs_function(self.graph, start_point, end_point)
-          self.route_display.config(text=route)
-      '''
+    if wheelchair_friendly:
+        pass
+    else:
+        route = self.bfs_function(self.graph, start_point, end_point)
+        self.route_display.config(text=route)
+    '''
       # Implementing algos
     bfs_shortest_path = find_shortest_path_using_bfs(self.graph, start_point, end_point)
     dfs_all_paths = find_all_paths_using_dfs(self.graph, start_point, end_point)
