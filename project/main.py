@@ -72,8 +72,8 @@ class CampusNavigator:
       self.route_button.grid(row=4, column=1, columnspan=2, padx=10, pady=10, sticky="e")
 
       self.route_display = tk.Label(master, text="")
-      '''self.route_display.grid(row=4, column=1, columnspan=2, padx=10, pady=10, sticky="e")
-      '''
+      self.route_display.grid(row=4, column=1, columnspan=2, padx=10, pady=10, sticky="e")
+      
 
   def find_route(self):
       start_point = self.start_var.get()
@@ -95,7 +95,7 @@ class CampusNavigator:
       dijkstra_shortest_path = find_shortest_path_using_dijkstra(self.graph, start_point)
 
       # Displaying results
-      result_text = f"BFS Shortest Path: {bfs_shortest_path}\n\nDFS All Paths: {dfs_all_paths}\n\nDijkstra Shortest Path:"
+      result_text = f"BFS Shortest Path: {bfs_shortest_path}\n\nDFS All Paths: {dfs_all_paths}\n\nDijkstra Shortest Path: {dijkstra_shortest_path}"
       self.route_display.config(text=result_text)
 
   def calculate_route(self, start, end):
