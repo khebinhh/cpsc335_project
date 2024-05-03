@@ -3,19 +3,34 @@ from dfs import dfs
 from dijkstra import dijkstra_algo
 from PIL import Image, ImageTk
 import tkinter as tk
+import time
 
 # Use bsf.py to find the shortest path
 def find_shortest_path_using_bfs(graph, start, end):
-    for path in bfs(graph, start, end):
-        return path
+    start_time = time.time()
+    path = next(bfs(graph, start, end), None)
+    end_time = time.time()
+
+    if path is not None:
+      return path, end_time - start_time
+    else:
+      return "No path found", end_time - start_time
 
 # Use dfs.py to find all possible paths
 def find_all_paths_using_dfs(graph, start, end):
-    return dfs(graph, start, end)
+    start_time = time.time()
+    paths = dfs(graph, start, end)
+    end_time = time.time()
+    execution_time = end_time - start_time
+    return paths[:8], execution_time
 
 # Use dijkstra.py to find the shortest weighted path
 def find_shortest_path_using_dijkstra(graph, start_node, end_node):
-    return dijkstra_algo(graph, start_node, end_node)
+    start_time = time.time()
+    path = dijkstra_algo(graph, start_node, end_node)
+    end_time = time.time()
+    execution_time = end_time - start_time
+    return path, execution_time
 
 
 # campusnavigator.py moves over here
@@ -91,14 +106,14 @@ class CampusNavigator:
         self.route_display.config(text=route)
     '''
       # Implementing algos
-    bfs_shortest_path = find_shortest_path_using_bfs(self.graph, start_point, end_point)
-    dfs_all_paths = find_all_paths_using_dfs(self.graph, start_point, end_point)[:8]
-    dijkstra_shortest_path = find_shortest_path_using_dijkstra(self.graph, start_point, end_point)
-
-      # Displaying results
-    result_text = f"BFS Shortest Path: {bfs_shortest_path}\n\nDFS All Paths:\n"
-    dfs_paths = [', '.join(path) for path in dfs_all_paths]
-    result_text += '\n'.join(dfs_paths) + f"\n\nDijkstra Shortest Path: {dijkstra_shortest_path}"
+    bfs_result, bfs_time = find_shortest_path_using_bfs(self.graph, start_point, end_point)
+    dfs_result, dfs_time = find_all_paths_using_dfs(self.graph, start_point, end_point)
+    dijkstra_result, dijkstra_time = find_shortest_path_using_dijkstra(self.graph, start_point, end_point)
+    
+    result_text = f"BFS Shortest Path: {bfs_result} (Time: {bfs_time:.4f}s)\n\nDFS All Paths (first 10):\n"
+    dfs_paths = [', '.join(path) for path in dfs_result]
+    result_text += '\n'.join(dfs_paths) + f"\n(Time: {dfs_time:.4f}s)\n\nDijkstra Shortest Path: {dijkstra_result} (Time: {dijkstra_time:.4f}s)"
+    
     self.route_display.config(text=result_text)
 
 def calculate_route(self, start, end):
