@@ -106,7 +106,9 @@ class CampusNavigator:
     dijkstra_shortest_path = find_shortest_path_using_dijkstra(self.graph, start_point, end_point)
 
       # Displaying results
-    result_text = f"BFS Shortest Path: {bfs_shortest_path}\n\nDFS All Paths: {dfs_all_paths}\n\nDijkstra Shortest Path: {dijkstra_shortest_path}"
+    result_text = f"BFS Shortest Path: {bfs_shortest_path}\n\nDFS All Paths:\n"
+    dfs_paths = [', '.join(path) for path in dfs_all_paths]
+    result_text += '\n'.join(dfs_paths) + "\n\nDijkstra Shortest Path: {dijkstra_shortest_path}"
     self.route_display.config(text=result_text)
 
 def calculate_route(self, start, end):
