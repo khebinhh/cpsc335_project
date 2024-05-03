@@ -1,7 +1,8 @@
 from bfs import bfs
 from dfs import dfs
 from dijkstra import dijkstra_algo
-
+import tkinter as tk
+from campusnavigator import CampusNavigator
 
 # Use bsf.py to find the shortest path
 
@@ -107,3 +108,13 @@ print(f"Shortest Path using BFS: {shortest_path}")
 
 all_paths = find_all_paths_using_dfs(graph, start_node, end_node)
 print(f"All Paths using DFS: {all_paths}")
+
+
+# Creating an instance of Tk
+root = tk.Tk()
+
+# Pass root
+app = CampusNavigator(root, graph)
+
+# Start main loop
+root.mainloop()

@@ -9,21 +9,20 @@ class CampusNavigator:
         self.master.title("Campus Navigator")
 
         #Resizing Map
-        """ fix later
+        
         campus_map_image = Image.open("CampusGraph.png")
         width, height = campus_map_image.size
         new_width = 400
         new_height = int(height * (new_width / width))
-        resized_campus_map = campus_map_image.resize((new_width, new_height), Image.ANTIALIAS)
+        resized_campus_map = campus_map_image.resize((new_width, new_height))
         self.CampusGraph = ImageTk.PhotoImage(resized_campus_map)
-        """
+        
         
         #Campus Map
-        """
-        self.CampusGraph = tk.PhotoImage(file="CampusGraph.png")
+        
         self.map_label = tk.Label(master, image=self.CampusGraph)
-        self.map_label.grid(row=0, column=0, rowspan=5, padx=10, pady=10)
-        """
+        self.map_label.grid(row=0, column=1, columnspan=2, padx=10, pady=10)
+        
 
         #start point
 
@@ -57,7 +56,8 @@ class CampusNavigator:
         self.route_button.grid(row=3, column=1, columnspan=2, padx=10, pady=10, sticky="e")
 
         self.route_display = tk.Label(master, text="")
-        self.route_display.grid(row=4, column=1, columnspan=2, padx=10, pady=10, sticky="e")
+        '''self.route_display.grid(row=4, column=1, columnspan=2, padx=10, pady=10, sticky="e")
+        '''
 
     def find_route(self):
         start_point = self.start_var.get()
@@ -75,4 +75,3 @@ class CampusNavigator:
 
     def calculate_route(self, start, end):
         return f"Route from {start} to {end} found!"
-
