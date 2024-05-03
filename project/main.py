@@ -14,8 +14,19 @@ def find_all_paths_using_dfs(graph, start, end):
     return dfs(graph, start, end)
 
 # Use dijkstra.py to find the shortest weighted path
-def find_shortest_path_using_dijkstra(graph, start_node):
-    return dijkstra_algo(graph, start_node)
+def find_shortest_path_using_dijkstra(graph, start_node, end_node):
+    shortest_distances = dijkstra_algo(graph, start_node)
+    shortest_path = [end_node]
+    current_node = end_node
+    while current_node != start_node:
+        for neighbor, weight in graph[current_node].items():
+            if shortest_distances[current_node] == shortest_distances[neighbor] + weight:
+                shortest_path.append(neighbor)
+                current_node = neighbor
+                break
+    shortest_path.reverse()
+    return shortest_path
+
 
 # campusnavigator.py moves over here
 class CampusNavigator:
@@ -73,12 +84,12 @@ class CampusNavigator:
 
       self.route_display = tk.Label(master, text="")
       self.route_display.grid(row=4, column=1, columnspan=2, padx=10, pady=10, sticky="e")
-      
-
+  
   def find_route(self):
-      start_point = self.start_var.get()
-      end_point = self.end_var.get()
-      '''
+    start_point = self.start_var.get()
+    end_point = self.end_var.get()
+    
+    '''
       route = self.calculate_route(start_point, end_point)
       self.route_display.config(text=route)
       wheelchair_friendly = self.accessibility_var.get()
@@ -90,15 +101,15 @@ class CampusNavigator:
           self.route_display.config(text=route)
       '''
       # Implementing algos
-      bfs_shortest_path = find_shortest_path_using_bfs(self.graph, start_point, end_point)
-      dfs_all_paths = find_all_paths_using_dfs(self.graph, start_point, end_point)
-      dijkstra_shortest_path = find_shortest_path_using_dijkstra(self.graph, start_point)
+    bfs_shortest_path = find_shortest_path_using_bfs(self.graph, start_point, end_point)
+    dfs_all_paths = find_all_paths_using_dfs(self.graph, start_point, end_point)
+    dijkstra_shortest_path = find_shortest_path_using_dijkstra(self.graph, start_point, end_point)
 
       # Displaying results
-      result_text = f"BFS Shortest Path: {bfs_shortest_path}\n\nDFS All Paths: {dfs_all_paths}\n\nDijkstra Shortest Path: {dijkstra_shortest_path}"
-      self.route_display.config(text=result_text)
+    result_text = f"BFS Shortest Path: {bfs_shortest_path}\n\nDFS All Paths: {dfs_all_paths}\n\nDijkstra Shortest Path: {dijkstra_shortest_path}"
+    self.route_display.config(text=result_text)
 
-  def calculate_route(self, start, end):
+def calculate_route(self, start, end):
       return f"Route from {start} to {end} found!"
     
 # Create function to initialize GUI and start main loop
