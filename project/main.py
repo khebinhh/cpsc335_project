@@ -15,17 +15,7 @@ def find_all_paths_using_dfs(graph, start, end):
 
 # Use dijkstra.py to find the shortest weighted path
 def find_shortest_path_using_dijkstra(graph, start_node, end_node):
-    shortest_distances = dijkstra_algo(graph, start_node)
-    shortest_path = [end_node]
-    current_node = end_node
-    while current_node != start_node:
-        for neighbor, weight in graph[current_node].items():
-            if shortest_distances[current_node] == shortest_distances[neighbor] + weight:
-                shortest_path.append(neighbor)
-                current_node = neighbor
-                break
-    shortest_path.reverse()
-    return shortest_path
+    return dijkstra_algo(graph, start_node, end_node)
 
 
 # campusnavigator.py moves over here
@@ -102,13 +92,13 @@ class CampusNavigator:
     '''
       # Implementing algos
     bfs_shortest_path = find_shortest_path_using_bfs(self.graph, start_point, end_point)
-    dfs_all_paths = find_all_paths_using_dfs(self.graph, start_point, end_point)
+    dfs_all_paths = find_all_paths_using_dfs(self.graph, start_point, end_point)[:8]
     dijkstra_shortest_path = find_shortest_path_using_dijkstra(self.graph, start_point, end_point)
 
       # Displaying results
     result_text = f"BFS Shortest Path: {bfs_shortest_path}\n\nDFS All Paths:\n"
     dfs_paths = [', '.join(path) for path in dfs_all_paths]
-    result_text += '\n'.join(dfs_paths) + "\n\nDijkstra Shortest Path: {dijkstra_shortest_path}"
+    result_text += '\n'.join(dfs_paths) + f"\n\nDijkstra Shortest Path: {dijkstra_shortest_path}"
     self.route_display.config(text=result_text)
 
 def calculate_route(self, start, end):
