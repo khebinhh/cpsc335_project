@@ -43,33 +43,33 @@ class CampusNavigator:
       #start point
 
       self.start_label = tk.Label(master, text="Select Start Point:")
-      self.start_label.grid(row=0, column=1, sticky="e", padx=10, pady=10)
+      self.start_label.grid(row=1, column=1, sticky="e", padx=10, pady=10)
 
       self.start_var = tk.StringVar()
       self.start_dropdown = tk.OptionMenu(master, self.start_var, *self.graph.keys())
-      self.start_dropdown.grid(row=0, column=2, padx=10, pady=10)
+      self.start_dropdown.grid(row=1, column=2, padx=10, pady=10)
 
       #end point
 
       self.end_label = tk.Label(master, text="Select End Point:")
-      self.end_label.grid(row=1, column=1, sticky="e", padx=10, pady=10)
+      self.end_label.grid(row=2, column=1, sticky="e", padx=10, pady=10)
 
       self.end_var = tk.StringVar()
       self.end_dropdown = tk.OptionMenu(master, self.end_var, *self.graph.keys())
-      self.end_dropdown.grid(row=1, column=2, padx=10, pady=10)
+      self.end_dropdown.grid(row=2, column=2, padx=10, pady=10)
 
       #Accessibility Options
       self.accessibility_label = tk.Label(master, text="Accessibility Options:")
-      self.accessibility_label.grid(row=2, column=1, sticky="e", padx=10, pady=10)
+      self.accessibility_label.grid(row=3, column=1, sticky="e", padx=10, pady=10)
 
       self.accessibility_var = tk.BooleanVar()
       self.accessibility_checkbox = tk.Checkbutton(master, text="Wheelchair-friendly routes", variable=self.accessibility_var)
-      self.accessibility_checkbox.grid(row=2, column=2, padx=10, pady=10)
+      self.accessibility_checkbox.grid(row=3, column=2, padx=10, pady=10)
 
       #find route
 
       self.route_button = tk.Button(master, text="Find Route", command=self.find_route)
-      self.route_button.grid(row=3, column=1, columnspan=2, padx=10, pady=10, sticky="e")
+      self.route_button.grid(row=4, column=1, columnspan=2, padx=10, pady=10, sticky="e")
 
       self.route_display = tk.Label(master, text="")
       '''self.route_display.grid(row=4, column=1, columnspan=2, padx=10, pady=10, sticky="e")
